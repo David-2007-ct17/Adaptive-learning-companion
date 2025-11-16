@@ -1,4 +1,4 @@
-Adaptive Learning Companion 
+# Adaptive Learning Companion 
 
 A multi-agent AI system that creates personalized learning experiences through sequential AI agents working together to plan, explain, and assess your learning journey.
 
@@ -13,14 +13,13 @@ A multi-agent AI system that creates personalized learning experiences through s
 
 ## Architecture
 
-Learning Companion
 ├──Planner Agent → Creates study plans
 ├──Explainer Agent → Generates explanations
 ├── Quizmaster Agent → Creates assessments
 ├──Learning Tools → Enhances learning
 └──Memory Bank → Tracks progress
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Python 3.12+
 - Google Gemini API key
