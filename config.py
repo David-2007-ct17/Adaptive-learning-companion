@@ -8,7 +8,7 @@ class Config:
     
     # Gemini API Configuration
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-    MODEL_NAME = "gemini-2.5-flash-exp"  # Updated for Gemini 2.5
+    MODEL_NAME = "gemini-1.5-flash-exp" 
     
     # Memory Configuration
     MEMORY_FILE = "data/learning_memory.json"
@@ -16,7 +16,7 @@ class Config:
     
     # Agent Configuration
     MAX_RETRIES = 3
-    RATE_LIMIT_CALLS_PER_MINUTE = 15
+    RATE_LIMIT_CALLS_PER_MINUTE = 5
     
     # UI Configuration
     MAX_DISPLAY_WIDTH = 70

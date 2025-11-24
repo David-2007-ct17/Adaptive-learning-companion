@@ -23,3 +23,14 @@ A multi-agent AI system that creates personalized learning experiences through s
 
 - Python 3.12+
 - Google Gemini API key
+
+## API Setup
+
+### Getting Your Gemini API Key
+1. Visit [Google AI Studio](https://aistudio.google.com/)
+2. Sign in with your Google account
+3. Click "Get API Key" → "Create API Key"
+4. Copy the key and add it to your `.env` file:
+
+```env
+GEMINI_API_KEY=AIzaSyBIRWCH4VjEOYxGCaXldXO-VNk3w58mRpk

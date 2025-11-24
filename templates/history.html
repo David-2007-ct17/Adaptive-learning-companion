@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Learning History - Adaptive Learning Companion{% endblock %}
+
+{% block content %}
+<div class="history-container">
+    <div class="history-header">
+        <h1 class="page-title">
+            <span class="page-icon">📖</span>
+            Learning History
+        </h1>
+        <p class="page-subtitle">Review your past learning sessions and track your progress.</p>
+    </div>
+
+    <div class="history-content">
+        {% if sessions %}
+            <div class="sessions-list">
+                {% for session in sessions|reverse %}
+                <div class="session-card">
+                    <div class="session-header">
+                        <h3 class="session-topic">{{ session.user_input }}</h3>
+                        <span class="session-date">{{ session.timestamp[:10] }}</span>
+                    </div>
+                    <div class="session-details">
+                        {% if session.responses.score %}
+                        <div class="session-score">
+                            <span class="score-label">Quiz Score:</span>
+                            <span class="score-value {{ 'score-high' if session.responses.score >= 80 else 'score-medium' if session.responses.score >= 60 else 'score-low' }}">
+                                {{ session.responses.score }}%
+                            </span>
+                        </div>
+                        {% endif %}
+                        <div class="session-actions">
+                            <button class="btn btn-small btn-outline view-session-btn" data-session='{{ session | tojson }}'>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">📚</div>
+                <h2>No Learning Sessions Yet</h2>
+                <p>Start your first learning session to see your history here.</p>
+                <a href="{{ url_for('learn') }}" class="btn btn-primary">
+                    <span class="btn-icon">🚀</span>
+                    Start Learning
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Session Details Modal -->
+<div id="sessionModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTopic" class="modal-title">Session Details</h2>
+            <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <!-- Session details will be populated here -->
+        </div>
+    </div>
+</div>
+{% endblock %}

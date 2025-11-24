@@ -1,11 +1,17 @@
-import google.generativeai as genai
 import time
 from typing import Optional
-from config import Config
+
+try:
+    import google.generativeai as genai
+    from config import Config
+    GEMINI_AVAILABLE = True
+except ImportError:
+    GEMINI_AVAILABLE = False
+    print("Warning: google-generativeai not installed. Running in demo mode.")
 
 class RateLimiter:
     """Simple rate limiter to avoid API limits"""
-    def __init__(self, calls_per_minute: int = Config.RATE_LIMIT_CALLS_PER_MINUTE):
+    def __init__(self, calls_per_minute: int = 15):
         self.calls_per_minute = calls_per_minute
         self.call_times = []
     
@@ -28,12 +34,19 @@ class BaseAgent:
     def __init__(self, name: str, system_prompt: str):
         self.name = name
         self.system_prompt = system_prompt
-        self.model = genai.GenerativeModel(Config.MODEL_NAME)
+        self.max_retries = 3
         self.rate_limiter = RateLimiter()
-        self.max_retries = Config.MAX_RETRIES
+        
+        if GEMINI_AVAILABLE:
+            self.model = genai.GenerativeModel(Config.MODEL_NAME)
+        else:
+            self.model = None
     
     def run(self, prompt: str) -> str:
         """Execute the agent with retry logic"""
+        if not GEMINI_AVAILABLE or self.model is None:
+            return f"[DEMO MODE] {self.name} would process: {prompt[:50]}..."
+        
         full_prompt = f"{self.system_prompt}\n\nUser input: {prompt}"
         
         for attempt in range(self.max_retries):

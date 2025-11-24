@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">
+            <span class="hero-icon">🎓</span>
+            Adaptive Learning Companion
+        </h1>
+        <p class="hero-subtitle">
+            Your AI-powered learning assistant that creates personalized study plans, 
+            explains complex topics, and tests your knowledge with interactive quizzes.
+        </p>
+        
+        <div class="hero-actions">
+            <a href="{{ url_for('learn') }}" class="btn btn-primary">
+                <span class="btn-icon">🚀</span>
+                Start Learning
+            </a>
+            <button id="quickDemoBtn" class="btn btn-secondary">
+                <span class="btn-icon">⚡</span>
+                Quick Demo
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="features-section">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>1. Choose Your Topic</h3>
+                <p>Tell us what you want to learn - anything from programming to history to science.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>2. Get Study Plan</h3>
+                <p>AI creates a personalized learning path tailored to your level and goals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>3. Learn with AI</h3>
+                <p>Get clear explanations, analogies, and examples from our AI tutor.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>4. Test Knowledge</h3>
+                <p>Take interactive quizzes and track your progress over time.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="demo-section">
+    <div class="container">
+        <h2 class="section-title">Try It Out</h2>
+        <div class="demo-content">
+            <p>Click the Quick Demo button to see how the AI learning companion works!</p>
+            <div id="demoResults" class="demo-results"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
